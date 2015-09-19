@@ -80,7 +80,7 @@ class GlanceController: WKInterfaceController {
         batteryLevel = device.batteryLevel
         percentageLabel.setText(String(format: "%.f%%", batteryLevel! * 100))
         
-        var level = Int(batteryLevel!) * 100
+        let level = Int(batteryLevel!) * 100
         groupItem.startAnimatingWithImagesInRange(NSRange(location: 0, length: level), duration: 1, repeatCount: 1)
     }
     

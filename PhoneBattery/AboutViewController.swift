@@ -9,7 +9,7 @@
 import UIKit
 import MessageUI
 
-class AboutViewController: UITableViewController, MFMailComposeViewControllerDelegate, UIScrollViewDelegate {
+class AboutViewController: UITableViewController, MFMailComposeViewControllerDelegate {
     
     var visualEffectView : UIVisualEffectView?
     
@@ -17,11 +17,11 @@ class AboutViewController: UITableViewController, MFMailComposeViewControllerDel
         super.init(style: style)
     }
     
-    required init!(coder aDecoder: NSCoder!) {
+    required init!(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override init!(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
 
@@ -35,7 +35,7 @@ class AboutViewController: UITableViewController, MFMailComposeViewControllerDel
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Action, target: self, action: "sharePressed:")
         
-        var headerView = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, 130))
+        let headerView = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, 130))
         let backgroundImageView = UIImageView(image: UIImage(named: "BackgroundImage"))
         backgroundImageView.frame = CGRectMake(0, 0, self.view.frame.size.width, headerView.frame.size.height)
         backgroundImageView.contentMode = UIViewContentMode.ScaleAspectFit
@@ -47,7 +47,7 @@ class AboutViewController: UITableViewController, MFMailComposeViewControllerDel
         backgroundImageView.addSubview(visualEffectView)
         
         let appIconImageView = UIImageView(image: UIImage(named: "MaskedIcon"))
-        appIconImageView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        appIconImageView.translatesAutoresizingMaskIntoConstraints = false
         appIconImageView.contentMode = UIViewContentMode.ScaleAspectFit
         visualEffectView.addSubview(appIconImageView)
         
@@ -64,7 +64,7 @@ class AboutViewController: UITableViewController, MFMailComposeViewControllerDel
         nameLabel.text = "PhoneBattery"
         nameLabel.font = UIFont.boldSystemFontOfSize(17)
         nameLabel.textColor = UIColor.whiteColor()
-        nameLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
         visualEffectView.addSubview(nameLabel)
         
         visualEffectView.addConstraint(NSLayoutConstraint(item: nameLabel, attribute: .CenterY, relatedBy: .Equal, toItem: visualEffectView, attribute: .CenterY, multiplier: 1.0, constant: -7))
@@ -78,7 +78,7 @@ class AboutViewController: UITableViewController, MFMailComposeViewControllerDel
         versionLabel.text = String(format: "Version %@ (%@)", shortString, buildString)
         versionLabel.font = UIFont.systemFontOfSize(13)
         versionLabel.textColor = UIColor.whiteColor()
-        versionLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
+        versionLabel.translatesAutoresizingMaskIntoConstraints = false
         visualEffectView.addSubview(versionLabel)
         
         visualEffectView.addConstraint(NSLayoutConstraint(item: versionLabel, attribute: .Top, relatedBy: .Equal, toItem: nameLabel, attribute: .Bottom, multiplier: 1.0, constant: 0))
@@ -119,7 +119,7 @@ class AboutViewController: UITableViewController, MFMailComposeViewControllerDel
         scrollView.pagingEnabled = true
         scrollView.showsVerticalScrollIndicator = false
         scrollView.contentSize = CGSizeMake(self.view.frame.size.width, screenHeight * 3)
-        scrollView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
         visualEffectView!.addSubview(scrollView)
         
         visualEffectView!.addConstraint(NSLayoutConstraint(item: scrollView, attribute: .CenterX, relatedBy: .Equal, toItem: visualEffectView!, attribute: .CenterX, multiplier: 1.0, constant: 0))
@@ -132,7 +132,7 @@ class AboutViewController: UITableViewController, MFMailComposeViewControllerDel
         
         
         let firstDescription = UILabel()
-        firstDescription.setTranslatesAutoresizingMaskIntoConstraints(false)
+        firstDescription.translatesAutoresizingMaskIntoConstraints = false
         firstDescription.textColor = UIColor.whiteColor()
         firstDescription.textAlignment = .Center
         firstDescription.numberOfLines = 0
@@ -148,7 +148,7 @@ class AboutViewController: UITableViewController, MFMailComposeViewControllerDel
         
         
         let firstTitle = UILabel()
-        firstTitle.setTranslatesAutoresizingMaskIntoConstraints(false)
+        firstTitle.translatesAutoresizingMaskIntoConstraints = false
         firstTitle.textColor = UIColor.whiteColor()
         firstTitle.textAlignment = .Center
         firstTitle.numberOfLines = 0
@@ -166,7 +166,7 @@ class AboutViewController: UITableViewController, MFMailComposeViewControllerDel
         
         
         let imageView1 = UIImageView(image: UIImage(named: "WatchImage1"))
-        imageView1.setTranslatesAutoresizingMaskIntoConstraints(false)
+        imageView1.translatesAutoresizingMaskIntoConstraints = false
         imageView1.contentMode = UIViewContentMode.ScaleAspectFit
         scrollView.addSubview(imageView1)
         
@@ -185,7 +185,7 @@ class AboutViewController: UITableViewController, MFMailComposeViewControllerDel
         scrollLabel1.text = NSLocalizedString("SWIPE_UP", comment: "")
         scrollLabel1.textColor = UIColor.whiteColor()
         scrollLabel1.textAlignment = .Center
-        scrollLabel1.setTranslatesAutoresizingMaskIntoConstraints(false)
+        scrollLabel1.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(scrollLabel1)
         
         scrollView.addConstraint(NSLayoutConstraint(item: scrollLabel1, attribute: .CenterX, relatedBy: .Equal, toItem: scrollView, attribute: .CenterX, multiplier: 1.0, constant: 15))
@@ -195,7 +195,7 @@ class AboutViewController: UITableViewController, MFMailComposeViewControllerDel
         
         
         let arrow1 = UIImageView(image: UIImage(named: "ArrowIcon"))
-        arrow1.setTranslatesAutoresizingMaskIntoConstraints(false)
+        arrow1.translatesAutoresizingMaskIntoConstraints = false
         arrow1.contentMode = .ScaleAspectFit
         scrollView.addSubview(arrow1)
         
@@ -211,7 +211,7 @@ class AboutViewController: UITableViewController, MFMailComposeViewControllerDel
         scrollLabel2.text = NSLocalizedString("SWIPE_UP", comment: "")
         scrollLabel2.textColor = UIColor.whiteColor()
         scrollLabel2.textAlignment = .Center
-        scrollLabel2.setTranslatesAutoresizingMaskIntoConstraints(false)
+        scrollLabel2.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(scrollLabel2)
         
         scrollView.addConstraint(NSLayoutConstraint(item: scrollLabel2, attribute: .CenterX, relatedBy: .Equal, toItem: scrollView, attribute: .CenterX, multiplier: 1.0, constant: 15))
@@ -221,7 +221,7 @@ class AboutViewController: UITableViewController, MFMailComposeViewControllerDel
         
         
         let arrow2 = UIImageView(image: UIImage(named: "ArrowIcon"))
-        arrow2.setTranslatesAutoresizingMaskIntoConstraints(false)
+        arrow2.translatesAutoresizingMaskIntoConstraints = false
         arrow2.contentMode = .ScaleAspectFit
         scrollView.addSubview(arrow2)
         
@@ -236,7 +236,7 @@ class AboutViewController: UITableViewController, MFMailComposeViewControllerDel
         
         
         let secondDescription = UILabel()
-        secondDescription.setTranslatesAutoresizingMaskIntoConstraints(false)
+        secondDescription.translatesAutoresizingMaskIntoConstraints = false
         secondDescription.textColor = UIColor.whiteColor()
         secondDescription.textAlignment = .Center
         secondDescription.numberOfLines = 0
@@ -252,7 +252,7 @@ class AboutViewController: UITableViewController, MFMailComposeViewControllerDel
         
         
         let imageView2 = UIImageView(image: UIImage(named: "WatchImage2"))
-        imageView2.setTranslatesAutoresizingMaskIntoConstraints(false)
+        imageView2.translatesAutoresizingMaskIntoConstraints = false
         imageView2.contentMode = UIViewContentMode.ScaleAspectFit
         scrollView.addSubview(imageView2)
         
@@ -266,7 +266,7 @@ class AboutViewController: UITableViewController, MFMailComposeViewControllerDel
         
         
         let thirdDescription = UILabel()
-        thirdDescription.setTranslatesAutoresizingMaskIntoConstraints(false)
+        thirdDescription.translatesAutoresizingMaskIntoConstraints = false
         thirdDescription.textColor = UIColor.whiteColor()
         thirdDescription.textAlignment = .Center
         thirdDescription.numberOfLines = 0
@@ -282,14 +282,14 @@ class AboutViewController: UITableViewController, MFMailComposeViewControllerDel
         
         
         
-        let closeButton = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+        let closeButton = UIButton(type: UIButtonType.System)
         closeButton.setTitle(NSLocalizedString("CLOSE", comment: ""), forState: .Normal)
         closeButton.titleLabel?.font = UIFont.boldSystemFontOfSize(16)
         closeButton.layer.cornerRadius = 14
         closeButton.layer.masksToBounds = true
         closeButton.setBackgroundImage(UIImage.imageWithColor(UIColor.whiteColor()), forState: .Normal)
         closeButton.addTarget(self, action: "closeIntroduction", forControlEvents: UIControlEvents.TouchUpInside)
-        closeButton.setTranslatesAutoresizingMaskIntoConstraints(false)
+        closeButton.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(closeButton)
         
         scrollView.addConstraint(NSLayoutConstraint(item: closeButton, attribute: .CenterX, relatedBy: .Equal, toItem: scrollView, attribute: .CenterX, multiplier: 1.0, constant: 0))
@@ -356,10 +356,10 @@ class AboutViewController: UITableViewController, MFMailComposeViewControllerDel
     
     override func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         if section == 2 {
-            var headerView = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, 30))
+            let headerView = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, 30))
             
             let thanksLabel = UILabel()
-            thanksLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
+            thanksLabel.translatesAutoresizingMaskIntoConstraints = false
             thanksLabel.text = NSLocalizedString("THANKS_DOWNLOADING", comment: "")
             thanksLabel.textAlignment = .Center
             thanksLabel.font = UIFont.systemFontOfSize(12)
@@ -388,7 +388,7 @@ class AboutViewController: UITableViewController, MFMailComposeViewControllerDel
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("cellIdentifier") as! UITableViewCell?
+        var cell = tableView.dequeueReusableCellWithIdentifier("cellIdentifier") 
         var cell2 = tableView.dequeueReusableCellWithIdentifier("cellidentifier2") as! CreatorTableViewCell?
         
         if cell == nil {
@@ -474,7 +474,7 @@ class AboutViewController: UITableViewController, MFMailComposeViewControllerDel
     
     // MARK: MFMailComposeViewControllerDelegate
     
-    func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 

@@ -18,7 +18,7 @@ class CreatorTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         avatarImageView.layer.cornerRadius = 50 / 2
-        avatarImageView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        avatarImageView.translatesAutoresizingMaskIntoConstraints = false
         avatarImageView.contentMode = .ScaleAspectFit
         avatarImageView.layer.masksToBounds = true
         avatarImageView.layer.borderColor = UIColor.grayColor().CGColor
@@ -34,7 +34,7 @@ class CreatorTableViewCell: UITableViewCell {
         self.contentView.addConstraint(NSLayoutConstraint(item: avatarImageView, attribute: .CenterY, relatedBy: .Equal, toItem: self.contentView, attribute: .CenterY, multiplier: 1.0, constant: 0))
         
         
-        nameLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.font = UIFont.systemFontOfSize(17)
         self.contentView.addSubview(nameLabel)
         
@@ -42,7 +42,7 @@ class CreatorTableViewCell: UITableViewCell {
         
         self.contentView.addConstraint(NSLayoutConstraint(item: nameLabel, attribute: .CenterY, relatedBy: .Equal, toItem: self.contentView, attribute: .CenterY, multiplier: 1.0, constant: -10))
         
-        jobLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
+        jobLabel.translatesAutoresizingMaskIntoConstraints = false
         jobLabel.font = UIFont.systemFontOfSize(14)
         self.contentView.addSubview(jobLabel)
         
@@ -52,7 +52,7 @@ class CreatorTableViewCell: UITableViewCell {
     
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
