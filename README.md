@@ -7,7 +7,14 @@ PhoneBattery is a simple utility that lets you check your phone's battery life o
 
 PhoneBattery is also **available for free** on the [App Store](https://itunes.apple.com/us/app/phonebattery-your-phones-battery/id1009278300?ls=1&mt=8)!
 
-I had the initial idea for this on the plane from WWDC back to Germany, polished it at home and here it is now. Please let me know what you think of it!
+I had the initial idea for this app on the plane from WWDC back to Germany, polished it at home and here it is now.
+
+### System Requirements
+
+* Requires iOS 9 or newer
+* Requires watchOS 2 or newer
+
+You can also download an old build [here](https://github.com/marcelvoss/PhoneBattery/releases/tag/1.0.2), that is compatible to iOS 8 and watchOS 1.
 
 ### Localization
 | Language |  Localizer                                      |
