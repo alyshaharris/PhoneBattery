@@ -1,15 +1,32 @@
-
 //
 //  BatteryInformation.swift
 //  PhoneBattery
 //
-//  Created by Marcel Voß on 29.07.15.
-//  Copyright (c) 2015 Marcel Voss. All rights reserved.
+//  Created by Marcel Voß on 19.09.15.
+//  Copyright © 2015 Marcel Voss. All rights reserved.
 //
 
 import UIKit
 
 class BatteryInformation: NSObject {
+    
+    let device = UIDevice.currentDevice()
+    var batteryState : String?
+    var batteryLevel : Int?
+    
+    override init() {
+        super.init()
+        
+        device.batteryMonitoringEnabled = true
+    }
+    
+    func currentBatteryLevel() -> Int {
+        return Int(device.batteryLevel * 100)
+    }
+    
+    func currentBatteryState() -> String {
+        return BatteryInformation.stringForBatteryState(device.batteryState)
+    }
     
     class func stringForBatteryState(batteryState: UIDeviceBatteryState) -> String {
         if batteryState == UIDeviceBatteryState.Full {
@@ -22,5 +39,5 @@ class BatteryInformation: NSObject {
             return NSLocalizedString("UNKNOWN", comment: "")
         }
     }
-   
+    
 }
