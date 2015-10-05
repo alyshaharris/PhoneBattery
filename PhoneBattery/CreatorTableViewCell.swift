@@ -32,7 +32,7 @@ class CreatorTableViewCell: UITableViewCell {
         self.contentView.addConstraint(NSLayoutConstraint(item: avatarImageView, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .Width, multiplier: 1.0, constant: 50))
         
         self.contentView.addConstraint(NSLayoutConstraint(item: avatarImageView, attribute: .CenterY, relatedBy: .Equal, toItem: self.contentView, attribute: .CenterY, multiplier: 1.0, constant: 0))
-        
+
         
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.font = UIFont.systemFontOfSize(17)
@@ -41,6 +41,7 @@ class CreatorTableViewCell: UITableViewCell {
         self.contentView.addConstraint(NSLayoutConstraint(item: nameLabel, attribute: .Left, relatedBy: .Equal, toItem: avatarImageView, attribute: .Right, multiplier: 1.0, constant: 15))
         
         self.contentView.addConstraint(NSLayoutConstraint(item: nameLabel, attribute: .CenterY, relatedBy: .Equal, toItem: self.contentView, attribute: .CenterY, multiplier: 1.0, constant: -10))
+        
         
         jobLabel.translatesAutoresizingMaskIntoConstraints = false
         jobLabel.font = UIFont.systemFontOfSize(14)

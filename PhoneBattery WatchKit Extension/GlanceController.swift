@@ -8,53 +8,39 @@
 
 import WatchKit
 import Foundation
+import WatchConnectivity
 
 
-class GlanceController: WKInterfaceController {
-
-    let device = UIDevice.currentDevice()
-    var batteryLevel : Float?
-    var batteryState : UIDeviceBatteryState!
+class GlanceController: WKInterfaceController, WCSessionDelegate {
+    
+    var session: WCSession!
 
     @IBOutlet weak var percentageLabel: WKInterfaceLabel!
     @IBOutlet weak var statusLabel: WKInterfaceLabel!
     @IBOutlet weak var titleLabel: WKInterfaceLabel!
     @IBOutlet weak var groupItem: WKInterfaceGroup!
     
+    var batteryInformationDictionary : [String: AnyObject]?
+    
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         // Configure interface objects here.
         
-        device.batteryMonitoringEnabled = true
-        batteryLevel = device.batteryLevel
-        batteryState = device.batteryState
-        
-        
         groupItem.setBackgroundImageNamed("frame-")
-        
-        let level = batteryLevel! * 100
-        if level > 0 {
-            groupItem.startAnimatingWithImagesInRange(NSMakeRange(0, Int(level)+1), duration: 1, repeatCount: 1)
-        } else {
-            groupItem.startAnimatingWithImagesInRange(NSMakeRange(0, Int(level)), duration: 1, repeatCount: 1)
-        }
-        
     }
     
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
         
-        device.batteryMonitoringEnabled = true
-        batteryLevel = device.batteryLevel
-        batteryState = device.batteryState
-        
-        // KVO for oberserving battery level and state
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "batteryLevelChanged:", name: UIDeviceBatteryLevelDidChangeNotification, object: device)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "batteryStateChanged:", name: UIDeviceBatteryStateDidChangeNotification, object: device)
+        if WCSession.isSupported() {
+            session = WCSession.defaultSession()
+            session.delegate = self
+            session.activateSession()
+        }
        
-        percentageLabel.setText(String(format: "%.f%%", batteryLevel! * 100))
-        statusLabel.setText(self.stringForBatteryState(batteryState))
+        //percentageLabel.setText(String(format: "%.f%%", batteryLevel! * 100))
+        //statusLabel.setText(self.stringForBatteryState(batteryState))
         titleLabel.setText(NSLocalizedString("PHONE_BATTERY", comment: ""))
     }
     
@@ -63,29 +49,33 @@ class GlanceController: WKInterfaceController {
         super.didDeactivate()
     }
     
-    func stringForBatteryState(batteryState: UIDeviceBatteryState) -> String {
-        if batteryState == UIDeviceBatteryState.Full {
-            return NSLocalizedString("FULL", comment: "")
-        } else if batteryState == UIDeviceBatteryState.Charging {
-            return NSLocalizedString("CHARGING", comment: "")
-        } else if batteryState == UIDeviceBatteryState.Unplugged {
-            return NSLocalizedString("REMAINING", comment: "")
-        } else {
-            // State is unknown
-            return NSLocalizedString("UNKNOWN", comment: "")
+    func updateInterface() {
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            let batteryLevel = self.batteryInformationDictionary!["batteryLevel"] as! Int
+            let batteryState = self.batteryInformationDictionary!["batteryState"] as! Int
+            self.groupItem.startAnimatingWithImagesInRange(NSMakeRange(0, Int(batteryLevel)+1), duration: 1, repeatCount: 1)
+            
+            self.percentageLabel.setText(String(format: "%.f%%", batteryLevel))
+            self.statusLabel.setText(self.batteryStateForInt(batteryState))
         }
     }
     
-    func batteryLevelChanged(notification: NSNotification) {
-        batteryLevel = device.batteryLevel
-        percentageLabel.setText(String(format: "%.f%%", batteryLevel! * 100))
-        
-        let level = Int(batteryLevel!) * 100
-        groupItem.startAnimatingWithImagesInRange(NSRange(location: 0, length: level), duration: 1, repeatCount: 1)
+    func batteryStateForInt(stateInt: Int) -> String {
+        if stateInt == 0 {
+            return NSLocalizedString("UNKNOWN", comment: "")
+        } else if stateInt == 1 {
+            return NSLocalizedString("REMAINING", comment: "")
+        } else if stateInt == 2 {
+            return NSLocalizedString("CHARGING", comment: "")
+        }  else if stateInt == 3 {
+            return NSLocalizedString("FULL", comment: "")
+        }
+        return ""
     }
     
-    func batteryStateChanged(notification: NSNotification) {
-        batteryState = device.batteryState
-        stringForBatteryState(batteryState)
+    func session(session: WCSession, didReceiveApplicationContext applicationContext: [String : AnyObject]) {
+        batteryInformationDictionary = applicationContext
+        self.updateInterface()
     }
+    
 }

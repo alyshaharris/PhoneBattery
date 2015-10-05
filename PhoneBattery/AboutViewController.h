@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
+#import <SafariServices/SafariServices.h>
+#import <WatchConnectivity/WatchConnectivity.h>
 
 @interface AboutViewController : UITableViewController
 

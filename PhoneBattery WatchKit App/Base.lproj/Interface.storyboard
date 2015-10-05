@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="8191" systemVersion="15B22c" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="8092"/>
     </dependencies>
     <scenes>
         <!--Interface Controller-->
@@ -15,7 +15,7 @@
                                 <label alignment="center" verticalAlignment="center" text="Label" id="VHD-5w-nIS">
                                     <fontDescription key="font" type="system" pointSize="26"/>
                                 </label>
-                                <label height="20" alignment="center" verticalAlignment="center" text="Charging" id="8u1-cd-5eg"/>
+                                <label height="20" alignment="center" verticalAlignment="center" text="Label" id="8u1-cd-5eg"/>
                             </items>
                         </group>
                     </items>

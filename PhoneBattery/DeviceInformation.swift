@@ -21,11 +21,11 @@ class DeviceInformation: NSObject {
         return hardware
     }
     
-    class func appIdentifiers() -> (String, String) {
+    class func appIdentifiers() -> [String: String] {
         let shortString = NSBundle.mainBundle().infoDictionary!["CFBundleShortVersionString"] as! String
         let buildString = NSBundle.mainBundle().infoDictionary!["CFBundleVersion"] as! String
         
-        return (shortString, buildString)
+        return ["shortString": shortString, "buildString": buildString]
     }
    
 }

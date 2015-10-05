@@ -24,8 +24,8 @@ class BatteryInformation: NSObject {
         return Int(device.batteryLevel * 100)
     }
     
-    func currentBatteryState() -> String {
-        return BatteryInformation.stringForBatteryState(device.batteryState)
+    func currentBatteryState() -> UIDeviceBatteryState {
+        return device.batteryState
     }
     
     class func stringForBatteryState(batteryState: UIDeviceBatteryState) -> String {
