@@ -3,6 +3,9 @@
 </p>
 
 # PhoneBattery
+
+[![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=562d424f2492560100211446&branch=master&build=latest)](https://dashboard.buddybuild.com/apps/562d424f2492560100211446/build/latest)
+
 PhoneBattery is a simple utility that lets you check your phone's battery life on your Apple Watch. It is very simple and doesn't do anything else than that.
 
 PhoneBattery is also **available for free** on the [App Store](https://itunes.apple.com/us/app/phonebattery-your-phones-battery/id1009278300?ls=1&mt=8)!
